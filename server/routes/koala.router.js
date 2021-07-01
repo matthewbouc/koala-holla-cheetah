@@ -1,5 +1,6 @@
 const express = require('express');
 const koalaRouter = express.Router();
+const pg = require('pg');
 
 // DB CONNECTION
 const Pool = pg.Pool;
@@ -13,7 +14,7 @@ const config = {
 
 const pool = new Pool(config);
 
-// For testing debugging only...
+// For testing and debugging only...
 pool.on('connect', () => {
     console.log('Postgresql connected');
 });
