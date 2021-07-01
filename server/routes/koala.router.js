@@ -71,9 +71,11 @@ router.put('/koala/:id', (req, res) => {
     })
 });
 
-// test test test delete this later
+// test test test delete this later test test
 
+//Access granted on github -- might have to accept it
 
+//don't forget to bring ice cream
 
 // DELETE
 router.delete('/:id', (req,res) => {
