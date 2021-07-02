@@ -1,0 +1,14 @@
+header{
+    background-color: lightskyblue;
+    border: 3px solid antiquewhite;
+    border-radius: 15px;
+}
+
+img{
+    border: 3px solid black;
+    border-radius: 15px;
+}
+
+h1,h2,h3{
+    padding-left: 10px;
+}
