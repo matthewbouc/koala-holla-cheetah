@@ -2,7 +2,9 @@
   "name": "koalla_holla",
   "version": "1.0.0",
   "description": "This must stop: --------------- ![Nevar again](https://i.makeagif.com/media/8-22-2014/GO_DT4.gif)",
+
   "main": "client.js",
+
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/server.js"
@@ -10,6 +12,7 @@
   "author": "@devjana",
   "license": "ISC",
   "dependencies": {
+
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "pg": "^8.6.0"
@@ -19,6 +22,7 @@
     "type": "git",
     "url": "git+https://github.com/matthewbouc/koala-holla-cheetah.git"
   },
+
   "bugs": {
     "url": "https://github.com/matthewbouc/koala-holla-cheetah/issues"
   },
