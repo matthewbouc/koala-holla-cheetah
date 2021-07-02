@@ -7,6 +7,7 @@ $( document ).ready( function(){
   // load existing koalas on page load
   getKoalas();
   $('#viewKoalas').on('click', '.deleteKoala', deleteKoalaHandler);
+  $('#viewKoalas').on('click', '.transferKoalaButton', transferKoalaHandler);
 }); // end doc ready
 
 function setupClickListeners() {
@@ -87,7 +88,7 @@ function transferKoala(koalaId){
   })
   .then(response => {
     console.log(`Koala status updated`, response);
-    //*************UPDATE KOALA TABLE FUNCTION HERE***********//
+    getKoalas();
   })
   .catch(error => {
     console.log(`Koala status NOT updated`, error);
@@ -106,6 +107,7 @@ function renderKoala(listOfKoala){
           <td>${koala.age}</td>
           <td>${koala.readyForTransfer}</td>
           <td>${koala.notes}</td>
+          <td><button class="transferKoalaButton" data-id=${koala.id}>Transfer</button></td>
           <td><button class="deleteKoala" data-id=${koala.id}>Delete</button></td>
         </tr>`
         );
@@ -117,6 +119,11 @@ function renderKoala(listOfKoala){
 function deleteKoalaHandler() {
   deleteKoala($(this).data('id'));
 } 
+
+//TRANSFER
+function transferKoalaHandler(){
+  transferKoala($(this).data('id'));
+}
 
 function deleteKoala(koalaId){
     $.ajax({
