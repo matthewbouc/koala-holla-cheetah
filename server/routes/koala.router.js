@@ -1,5 +1,5 @@
 const express = require('express');
-const koalaRouter = express.Router();
+const router = express.Router();
 const pg = require('pg');
 
 // DB CONNECTION
@@ -24,23 +24,25 @@ pool.on('error', () => {
 });
 
 // GET route to send back all koalas in database
-router.get('/koala', (req,res) =>{
+router.get('/', (req,res) =>{
     let koalaList ='SELECT * FROM koala;';
     pool.query(koalaList)
-    .then((result) =>{
+    .then((result) => {
         res.send(result.rows);
-    }) .catch ((err) =>{
+    }) .catch ((err) => {
         console.log(`Error getting data ${koalaList}`, err);
         res.sendStatus(500);
     })
 });
 
 // POST route to add a koala to database
-router.post('/koala', (req, res) => {
+router.post('/', (req, res) => {
+    console.log('What is coming in from server?', req.body);
 	const newKoala = req.body;
 	const koalaList = `
-	SELECT * FROM "koala";
-	`;
+    INSERT INTO koala (name, gender, age, "readyForTransfer", notes)
+    VALUES ($1, $2, $3, $4, $5);
+  `;
 	pool.query(koalaList, [newKoala.name, newKoala.gender, newKoala.age, newKoala.readyForTransfer, newKoala.notes ])
 		.then(dbResponse => {
 			res.sendStatus(201);
@@ -53,11 +55,9 @@ router.post('/koala', (req, res) => {
 
 // PUT
 
-router.put('/koala/:id', (req, res) => {
+router.put('/:id', (req, res) => {
     // get id from url (which is from html)
     const koalaId = req.params.id;
-    
-    //let transfer = req.body.readyForTransfer
     
     let putQuery = `UPDATE koala SET "readyForTransfer"=true WHERE id=$1;`;
 
@@ -74,7 +74,7 @@ router.put('/koala/:id', (req, res) => {
 
 //Access granted on github -- might have to accept it
 
-//don't forget to bring ice cream
+//don't forget to bring ice cream 🍦
 
 // DELETE
 router.delete('/:id', (req,res) => {
@@ -96,7 +96,4 @@ router.delete('/:id', (req,res) => {
 });
 
 
-
-
-
-module.exports = koalaRouter;
+module.exports = router;
